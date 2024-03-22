@@ -67,18 +67,14 @@ int main(void) {
  p = &i; //o programa irá rodar porém com há um erro
  
   *q = &j; // não há erro
-  
   p = &*&i; // não há erro
-  
   i = (*&)j; // há erro, pois é ilegal (falta uma expressão no parênteses)
-  
   i = &&j; // não há erro
-  
   q = *p; // também possui um erro, mas o programa ainda rodará
-  
   i = (*p)++ + *q; // não há erro
   
 }
+
 --------------------------------------------------------------------
 
 Questão 4 -
@@ -268,8 +264,8 @@ int main(void){
   coisas[5] = aloha; // Não é válida, porque não podemos atribuir a uma variável um vetor
   pf = value; // Não é válida, pois a variável pf é do tipo ponteiro e só recebe valores do tipo inteiro
   pf = aloha; // A expressão é válida 
+  
   ----------------------------------------------------------------------------------
-  }
-
-  -----------------------------------------------------------------------------------
+  
+  
   
