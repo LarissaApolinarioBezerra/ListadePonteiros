@@ -63,14 +63,21 @@ Questão 3 -
 int main(void) {
   int i, j;
   int *p, *q;
-
-  p = &i; //o programa irá rodar porém com há um erro
+  
+ p = &i; //o programa irá rodar porém com há um erro
+ 
   *q = &j; // não há erro
+  
   p = &*&i; // não há erro
+  
   i = (*&)j; // há erro, pois é ilegal (falta uma expressão no parênteses)
+  
   i = &&j; // não há erro
+  
   q = *p; // também possui um erro, mas o programa ainda rodará
+  
   i = (*p)++ + *q; // não há erro
+  
 }
 --------------------------------------------------------------------
 
