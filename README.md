@@ -238,13 +238,18 @@ int main(){
 
 Questão 9 -
 
+
 ---------------------------------------------------------------------------------------
 
 Questão 10 -
 
+O programa tem um erro de compilação devido à tentativa de atribuir um valor inteiro ('3') a um ponteiro para uma constante ('int const *x'). Além disso, mesmo que a atribuição fosse corrigida, o programa tenta modificar o valor apontado por 'x' ao tentar incrementá-lo ('++(*x)'), o que não é possível devido à qualificação 'const'. Portanto, a saída do programa é indeterminada devido ao erro de compilação.
+
 ----------------------------------------------------------------------------------------
 
 Questão 11 -
+
+
 
 ----------------------------------------------------------------------------------------
 
@@ -266,6 +271,51 @@ int main(void){
   pf = aloha; // A expressão é válida 
   
   ----------------------------------------------------------------------------------
-  
+
+  Questão 13 -
+
+  Um memory leak ocorre em um programa quando alocamos memória dinamicamente (usando funções como malloc, calloc ou realloc), mas não liberamos essa memória quando não precisamos mais dela. Isso resulta em uma perda gradual de memória RAM disponível para o sistema operacional. Exemplo 1: #include <stdlib.h>
+
+int main() {
+    while (1) {
+        int *ptr = (int *)malloc(sizeof(int));
+        // Não há liberação de memória
+    }
+    return 0;
+} // Neste exemplo, o programa entra em um loop infinito e aloca repetidamente memória dinâmica sem liberá-la. Isso eventualmente levará a um esgotamento da memória disponível. Exemplo 2: #include <stdlib.h>
+
+int main() {
+    int *ptr = (int *)malloc(sizeof(int));
+    // Não há liberação de memória
+    return 0;
+} // Neste exemplo, o programa aloca memória dinâmica no início, mas não libera antes de terminar sua execução. Isso resulta em uma perda de memória, pois a memória alocada não está mais acessível. Exemplo 3: #include <stdlib.h>
+
+int main() {
+    while (1) {
+        int *ptr = (int *)malloc(sizeof(int));
+        free(ptr); // Libera a memória, mas dentro do loop, então a alocação é feita novamente
+    }
+    return 0;
+} // Neste exemplo, embora a memória seja liberada dentro do loop, ela é imediatamente realocada. Isso cria uma situação em que a memória é continuamente alocada e liberada, mas nunca disponibilizada para outros fins, resultando em um uso ineficiente da memória.
+____________________________________________________________
+
+Questão 14 -
+
+Um ponteiro para uma função é um ponteiro que armazena o endereço de memória de uma função. Isso permite que você chame a função indiretamente, usando o ponteiro como se fosse o próprio nome da função. Exemplo: #include <stdio.h>
+
+// Definindo uma função simples
+int soma(int a, int b) {
+    return a + b;
+}
+
+int main() {
+    int (*ptr)(int, int); // Declarando um ponteiro para uma função que recebe dois inteiros e retorna um inteiro
+    ptr = soma; // Atribuindo o endereço da função 'soma' ao ponteiro
+
+    int resultado = (*ptr)(3, 4); // Chamando a função através do ponteiro
+    printf("O resultado da soma é: %d\n", resultado);
+
+    return 0;
+}
   
   
